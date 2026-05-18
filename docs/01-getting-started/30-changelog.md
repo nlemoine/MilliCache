@@ -6,6 +6,19 @@ menu_order: 30
 
 # Changelog
 
+## [1.7.0-beta.2](https://github.com/MilliPress/MilliCache/compare/v1.7.0-beta.1...v1.7.0-beta.2) (2026-05-18)
+
+
+### Features
+
+* **adminbar:** animate + 500ms delay before post-clear recount ([00c7dc1](https://github.com/MilliPress/MilliCache/commit/00c7dc1199e1768c21f6432be3c436f44190d3db))
+* **adminbar:** live cache size + bounded current-view clear ([3877451](https://github.com/MilliPress/MilliCache/commit/38774516beb6e970597a37512d0c9d0b81fdd0fb))
+
+
+### Bug Fixes
+
+* **workflow:** make polish-release-pr idempotent across reruns ([077c0c8](https://github.com/MilliPress/MilliCache/commit/077c0c8b4e3f9258522a3d950134db64be4a2fa3))
+
 ## [1.7.0-beta.1](https://github.com/MilliPress/MilliCache/compare/v1.6.2...v1.7.0-beta.1) (2026-05-13)
 
 This release introduces a new **bucket framework** for response variants. Before, the cache treated every request producing the same URL as one entry — which meant sites returning different content based on a cookie, header, or user state had to either disable caching for those pages or fight invalidation manually. Now any rule condition can split requests into separate buckets — cookie values (consent state, A/B test arm, currency), auth tokens, or the `Accept` header. That last one is especially useful for sites optimizing for AI agents: pair MilliCache with something like [`roots/post-content-to-markdown`](https://github.com/roots/post-content-to-markdown), and the Markdown variant your AI crawlers fetch and the HTML variant your browsers fetch live under the same page context — publish or update a post, and both invalidate together instead of drifting out of sync. Paired with content-addressable body deduplication, identical response bodies are stored once and shared across every bucket that produces them, so variants that happen to land on the same output don't pay for duplicate storage.
