@@ -8,6 +8,11 @@ menu_order: 30
 
 ## [1.7.0-beta.2](https://github.com/MilliPress/MilliCache/compare/v1.7.0-beta.1...v1.7.0-beta.2) (2026-05-18)
 
+This beta brings two quality-of-life improvements to the admin bar cache controls, plus a workflow fix under the hood.
+
+The admin bar now shows a **live cache size** that fetches fresh data when you open the menu and again after any clear operation — no more stale counts. Clearing is also more precise: "Clear Current View" now targets only the specific URL you're looking at rather than accidentally wiping the entire cache when certain network or custom flags were present.
+
+On top of that, the post-clear experience feels more responsive: the size line pulses immediately to signal that an update is in progress, then recounts after a short delay once the purge has finished settling.
 
 ### Features
 
